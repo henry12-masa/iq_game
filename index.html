@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IQ診断ゲーム</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #eef3ff, #fff4f4);
+      color: #333;
+      text-align: center;
+    }
+
+    header {
+      padding: 25px 10px;
+      background: #ffffffdd;
+      box-shadow: 0 2px 10px #0001;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .ad {
+      margin: 15px auto;
+      padding: 18px;
+      background: #f3f3f3;
+      border: 2px dashed #bbb;
+      border-radius: 12px;
+      color: #777;
+      max-width: 520px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 25px auto;
+      padding: 22px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px #0002;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .badge {
+      background: #f5f7fb;
+      padding: 10px 14px;
+      border-radius: 12px;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .question {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 25px 0;
+      line-height: 1.6;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: #2f80ed;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #1c63bd;
+      transform: scale(1.03);
+    }
+
+    .start-btn {
+      background: #ff9800;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+    .start-btn:hover {
+      background: #e68900;
+    }
+
+    .status {
+      margin-top: 15px;
+      font-size: 19px;
+      font-weight: bold;
+      min-height: 28px;
+    }
+
+    .result {
+      font-size: 22px;
+      line-height: 1.8;
+    }
+
+    .iq-score {
+      font-size: 46px;
+      font-weight: 900;
+      color: #2f80ed;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #777;
+      margin-top: 18px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 520px) {
+      .choices {
+        grid-template-columns: 1fr;
+      }
+
+      .question {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>IQ診断ゲーム</h1>
+  <p>ひらめき・計算・規則性で頭脳チェック！</p>
+</header>
+
+<div class="ad">
+  広告エリア
+</div>
+
+<div class="container">
+  <div id="start">
+    <h2>全10問のIQ風クイズ</h2>
+    <p>制限時間内に、正しい答えを選んでください。</p>
+    <button class="start-btn" onclick="startGame()">スタート</button>
+  </div>
+
+  <div id="game" style="display:none;">
+    <div class="top">
+      <div class="badge">問題：<span id="qNum">1</span> / 10</div>
+      <div class="badge">スコア：<span id="score">0</span></div>
+      <div class="badge">残り時間：<span id="time">90</span>秒</div>
+    </div>
+
+    <div class="question" id="question"></div>
+    <div class="choices" id="choices"></div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div id="result" style="display:none;"></div>
+
+  <div class="small">
+    ※このゲームは娯楽用です。正式なIQや知能指数を測定するものではありません。
+  </div>
+</div>
+
+<script>
+  const quizData = [
+    {
+      q: "2, 4, 8, 16, ？",
+      choices: ["20", "24", "32", "36"],
+      answer: "32",
+      explain: "前の数字を2倍しています。"
+    },
+    {
+      q: "A, C, F, J, O, ？",
+      choices: ["S", "T", "U", "V"],
+      answer: "U",
+      explain: "アルファベットの間隔が+2,+3,+4,+5,+6です。"
+    },
+    {
+      q: "1, 1, 2, 3, 5, 8, ？",
+      choices: ["10", "11", "13", "15"],
+      answer: "13",
+      explain: "前2つの数字を足す数列です。"
+    },
+    {
+      q: "「本」→「読む」なら、「鉛筆」→？",
+      choices: ["削る", "書く", "消す", "開く"],
+      answer: "書く",
+      explain: "道具と主な使い方の関係です。"
+    },
+    {
+      q: "3人で3個のケーキを3分で食べます。9人で9個食べるには？",
+      choices: ["3分", "6分", "9分", "27分"],
+      answer: "3分",
+      explain: "人数もケーキも同じ比率で増えるため時間は同じです。"
+    },
+    {
+      q: "□に入る数字は？ 7 + 3 × 2 = □",
+      choices: ["13", "20", "17", "10"],
+      answer: "13",
+      explain: "掛け算を先に計算します。"
+    },
+    {
+      q: "「犬・猫・馬・車」仲間はずれは？",
+      choices: ["犬", "猫", "馬", "車"],
+      answer: "車",
+      explain: "車だけ動物ではありません。"
+    },
+    {
+      q: "10, 20, 40, 80, ？",
+      choices: ["100", "120", "140", "160"],
+      answer: "160",
+      explain: "前の数字を2倍しています。"
+    },
+    {
+      q: "右手に3本、左手に4本のペン。2本渡したら残りは？",
+      choices: ["5本", "6本", "7本", "9本"],
+      answer: "5本",
+      explain: "合計7本から2本渡すので5本です。"
+    },
+    {
+      q: "「朝」は「夜」の反対。では「入口」の反対は？",
+      choices: ["出口", "玄関", "中", "外"],
+      answer: "出口",
+      explain: "入口の反対は出口です。"
+    }
+  ];
+
+  let current = 0;
+  let score = 0;
+  let timeLeft = 90;
+  let timer = null;
+
+  const qNumEl = document.getElementById("qNum");
+  const scoreEl = document.getElementById("score");
+  const timeEl = document.getElementById("time");
+  const questionEl = document.getElementById("question");
+  const choicesEl = document.getElementById("choices");
+  const statusEl = document.getElementById("status");
+
+  function startGame() {
+    current = 0;
+    score = 0;
+    timeLeft = 90;
+
+    document.getElementById("start").style.display = "none";
+    document.getElementById("game").style.display = "block";
+    document.getElementById("result").style.display = "none";
+
+    scoreEl.textContent = score;
+    timeEl.textContent = timeLeft;
+
+    loadQuestion();
+
+    timer = setInterval(() => {
+      timeLeft--;
+      timeEl.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        finishGame();
+      }
+    }, 1000);
+  }
+
+  function loadQuestion() {
+    if (current >= quizData.length) {
+      finishGame();
+      return;
+    }
+
+    const data = quizData[current];
+
+    qNumEl.textContent = current + 1;
+    questionEl.textContent = data.q;
+    statusEl.textContent = "";
+    choicesEl.innerHTML = "";
+
+    const shuffled = [...data.choices].sort(() => Math.random() - 0.5);
+
+    shuffled.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.textContent = choice;
+      btn.onclick = () => checkAnswer(choice);
+      choicesEl.appendChild(btn);
+    });
+  }
+
+  function checkAnswer(choice) {
+    const data = quizData[current];
+
+    if (choice === data.answer) {
+      score++;
+      scoreEl.textContent = score;
+      statusEl.textContent = "正解！ " + data.explain;
+      statusEl.style.color = "#1f9d55";
+    } else {
+      statusEl.textContent = "不正解。正解は「" + data.answer + "」。" + data.explain;
+      statusEl.style.color = "#d93025";
+    }
+
+    current++;
+    setTimeout(loadQuestion, 1000);
+  }
+
+  function finishGame() {
+    clearInterval(timer);
+
+    document.getElementById("game").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    const iq = 80 + score * 6 + Math.floor(timeLeft / 10);
+
+    let rank = "";
+    let comment = "";
+
+    if (iq >= 135) {
+      rank = "天才級";
+      comment = "かなり鋭いひらめき力です。";
+    } else if (iq >= 120) {
+      rank = "かなり優秀";
+      comment = "論理力と処理速度が高めです。";
+    } else if (iq >= 105) {
+      rank = "平均以上";
+      comment = "バランスよく考えられています。";
+    } else if (iq >= 90) {
+      rank = "標準レベル";
+      comment = "落ち着いて解けばもっと伸びます。";
+    } else {
+      rank = "のびしろタイプ";
+      comment = "ゆっくり考える問題から慣れていきましょう。";
+    }
+
+    document.getElementById("result").innerHTML = `
+      <div class="result">
+        <h2>診断結果</h2>
+        <p>あなたのIQ風スコアは</p>
+        <div class="iq-score">${iq}</div>
+        <p><strong>${rank}</strong></p>
+        <p>${quizData.length}問中 ${score}問 正解</p>
+        <p>${comment}</p>
+        <button onclick="location.reload()">もう一度プレイ</button>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
