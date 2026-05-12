@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+<meta name="google-site-verification" content="fI6VE2a41HjVNPJzio2iur_L8SaiEbpX48CRMR9H1PQ" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IQ診断ゲーム</title>
+  <title>IQ?????</title>
   <style>
     body {
       margin: 0;
@@ -139,14 +140,14 @@
 <body>
 
 <header>
-  <h1>IQ診断ゲーム</h1>
-  <p>ひらめき・計算・規則性で頭脳チェック！</p>
+  <h1>IQ?????</h1>
+  <p>???????????????????</p>
 </header>
 
 <div class="ad">
  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8398161859137802"
      crossorigin="anonymous"></script>
-<!-- チェス -->
+<!-- ??? -->
 <ins class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-8398161859137802"
@@ -160,16 +161,16 @@
 
 <div class="container">
   <div id="start">
-    <h2>全10問のIQ風クイズ</h2>
-    <p>制限時間内に、正しい答えを選んでください。</p>
-    <button class="start-btn" onclick="startGame()">スタート</button>
+    <h2>?10??IQ????</h2>
+    <p>?????????????????????</p>
+    <button class="start-btn" onclick="startGame()">????</button>
   </div>
 
   <div id="game" style="display:none;">
     <div class="top">
-      <div class="badge">問題：<span id="qNum">1</span> / 10</div>
-      <div class="badge">スコア：<span id="score">0</span></div>
-      <div class="badge">残り時間：<span id="time">90</span>秒</div>
+      <div class="badge">???<span id="qNum">1</span> / 10</div>
+      <div class="badge">????<span id="score">0</span></div>
+      <div class="badge">?????<span id="time">90</span>?</div>
     </div>
 
     <div class="question" id="question"></div>
@@ -180,191 +181,191 @@
   <div id="result" style="display:none;"></div>
 
   <div class="small">
-    ※このゲームは娯楽用です。正式なIQや知能指数を測定するものではありません。
+    ????????????????IQ????????????????????
   </div>
 </div>
 
 <script>
   const quizData = [
     {
-      q: "2, 4, 8, 16, ？",
+      q: "2, 4, 8, 16, ?",
       choices: ["20", "24", "32", "36"],
       answer: "32",
-      explain: "前の数字を2倍しています。"
+      explain: "?????2???????"
     },
     {
-      q: "1, 3, 6, 10, 15, ？",
+      q: "1, 3, 6, 10, 15, ?",
       choices: ["18", "20", "21", "25"],
       answer: "21",
-      explain: "増加量が+2,+3,+4,+5です。"
+      explain: "????+2,+3,+4,+5???"
     },
     {
-      q: "5, 10, 20, 40, ？",
+      q: "5, 10, 20, 40, ?",
       choices: ["60", "70", "80", "90"],
       answer: "80",
-      explain: "2倍ずつ増えています。"
+      explain: "2??????????"
     },
     {
-      q: "A, C, F, J, O, ？",
+      q: "A, C, F, J, O, ?",
       choices: ["S", "T", "U", "V"],
       answer: "U",
-      explain: "増加量が+2,+3,+4,+5,+6です。"
+      explain: "????+2,+3,+4,+5,+6???"
     },
     {
-      q: "1, 1, 2, 3, 5, 8, ？",
+      q: "1, 1, 2, 3, 5, 8, ?",
       choices: ["10", "11", "13", "15"],
       answer: "13",
-      explain: "フィボナッチ数列です。"
+      explain: "???????????"
     },
     {
-      q: "100 ÷ 5 × 2 = ?",
+      q: "100 ? 5 ? 2 = ?",
       choices: ["10", "20", "40", "50"],
       answer: "40",
-      explain: "左から順に計算します。"
+      explain: "???????????"
     },
     {
-      q: "□に入る数字は？ 7 + 3 × 2 = □",
+      q: "???????? 7 + 3 ? 2 = ?",
       choices: ["13", "20", "17", "10"],
       answer: "13",
-      explain: "掛け算を先に計算します。"
+      explain: "????????????"
     },
     {
-      q: "3人で3個のケーキを3分で食べます。9人で9個食べるには？",
-      choices: ["3分", "6分", "9分", "27分"],
-      answer: "3分",
-      explain: "人数とケーキが同比率なので時間は同じです。"
+      q: "3??3??????3???????9??9???????",
+      choices: ["3?", "6?", "9?", "27?"],
+      answer: "3?",
+      explain: "?????????????????????"
     },
     {
-      q: "「犬・猫・馬・車」仲間はずれは？",
-      choices: ["犬", "猫", "馬", "車"],
-      answer: "車",
-      explain: "車だけ動物ではありません。"
+      q: "????????????????",
+      choices: ["?", "?", "?", "?"],
+      answer: "?",
+      explain: "?????????????"
     },
     {
-      q: "「本」→「読む」なら、「鉛筆」→？",
-      choices: ["削る", "書く", "消す", "開く"],
-      answer: "書く",
-      explain: "道具と用途の関係です。"
+      q: "?????????????????",
+      choices: ["??", "??", "??", "??"],
+      answer: "??",
+      explain: "???????????"
     },
     {
-      q: "10, 20, 40, 80, ？",
+      q: "10, 20, 40, 80, ?",
       choices: ["100", "120", "140", "160"],
       answer: "160",
-      explain: "2倍ずつ増えています。"
+      explain: "2??????????"
     },
     {
-      q: "9, 18, 27, 36, ？",
+      q: "9, 18, 27, 36, ?",
       choices: ["45", "54", "63", "72"],
       answer: "45",
-      explain: "9ずつ増えています。"
+      explain: "9?????????"
     },
     {
-      q: "64, 32, 16, 8, ？",
+      q: "64, 32, 16, 8, ?",
       choices: ["2", "3", "4", "6"],
       answer: "4",
-      explain: "半分になっています。"
+      explain: "??????????"
     },
     {
-      q: "2, 6, 12, 20, 30, ？",
+      q: "2, 6, 12, 20, 30, ?",
       choices: ["36", "40", "42", "48"],
       answer: "42",
-      explain: "増加量が+4,+6,+8,+10です。"
+      explain: "????+4,+6,+8,+10???"
     },
     {
-      q: "「朝」は「夜」の反対。では「入口」の反対は？",
-      choices: ["出口", "玄関", "中", "外"],
-      answer: "出口",
-      explain: "反対語です。"
+      q: "??????????????????????",
+      choices: ["??", "??", "?", "?"],
+      answer: "??",
+      explain: "??????"
     },
     {
-      q: "右手に3本、左手に4本のペン。2本渡したら残りは？",
-      choices: ["5本", "6本", "7本", "9本"],
-      answer: "5本",
-      explain: "7本−2本です。"
+      q: "???3?????4?????2?????????",
+      choices: ["5?", "6?", "7?", "9?"],
+      answer: "5?",
+      explain: "7??2????"
     },
     {
-      q: "次のうち最も大きい数字は？",
+      q: "?????????????",
       choices: ["0.9", "0.09", "0.99", "0.909"],
       answer: "0.99",
-      explain: "小数比較です。"
+      explain: "???????"
     },
     {
-      q: "3×3−3÷3 = ?",
+      q: "3?3?3?3 = ?",
       choices: ["6", "8", "9", "12"],
       answer: "8",
-      explain: "掛け算・割り算を先にします。"
+      explain: "??????????????"
     },
     {
-      q: "25, 24, 22, 19, 15, ？",
+      q: "25, 24, 22, 19, 15, ?",
       choices: ["10", "11", "12", "13"],
       answer: "10",
-      explain: "−1,−2,−3,−4です。"
+      explain: "?1,?2,?3,?4???"
     },
     {
-      q: "もし昨日が金曜日なら、明後日は？",
-      choices: ["土曜", "日曜", "月曜", "火曜"],
-      answer: "月曜",
-      explain: "昨日金曜→今日土曜→明日日曜→明後日月曜。"
+      q: "????????????????",
+      choices: ["??", "??", "??", "??"],
+      answer: "??",
+      explain: "?????????????????????"
     },
     {
-      q: "4, 9, 16, 25, ？",
+      q: "4, 9, 16, 25, ?",
       choices: ["30", "35", "36", "49"],
       answer: "36",
-      explain: "2²,3²,4²,5²…なので6²です。"
+      explain: "2?,3?,4?,5?????6????"
     },
     {
-      q: "1000から10を10回引くと？",
+      q: "1000??10?10?????",
       choices: ["0", "100", "900", "990"],
       answer: "900",
-      explain: "10を10回引く＝100引く。"
+      explain: "10?10????100???"
     },
     {
-      q: "「リンゴ」は「果物」。では「ニンジン」は？",
-      choices: ["植物", "野菜", "赤", "畑"],
-      answer: "野菜",
-      explain: "分類問題です。"
+      q: "?????????????????????",
+      choices: ["??", "??", "?", "?"],
+      answer: "??",
+      explain: "???????"
     },
     {
-      q: "7人が7日で7個作る。1人が1個作るのに何日？",
-      choices: ["1日", "7日", "14日", "49日"],
-      answer: "7日",
-      explain: "1人でも1個に7日必要です。"
+      q: "7??7??7????1??1????????",
+      choices: ["1?", "7?", "14?", "49?"],
+      answer: "7?",
+      explain: "1???1??7??????"
     },
     {
-      q: "2, 5, 10, 17, 26, ？",
+      q: "2, 5, 10, 17, 26, ?",
       choices: ["35", "37", "39", "41"],
       answer: "37",
-      explain: "差が+3,+5,+7,+9です。"
+      explain: "??+3,+5,+7,+9???"
     },
     {
-      q: "1時間は60分。では0.5時間は？",
-      choices: ["15分", "20分", "30分", "50分"],
-      answer: "30分",
-      explain: "60分の半分です。"
+      q: "1???60????0.5????",
+      choices: ["15?", "20?", "30?", "50?"],
+      answer: "30?",
+      explain: "60???????"
     },
     {
-      q: "8×7−6 = ?",
+      q: "8?7?6 = ?",
       choices: ["48", "50", "52", "56"],
       answer: "50",
-      explain: "56−6です。"
+      explain: "56?6???"
     },
     {
-      q: "「夏」に近いものは？",
-      choices: ["寒い", "海", "雪", "氷"],
-      answer: "海",
-      explain: "連想問題です。"
+      q: "??????????",
+      choices: ["??", "?", "?", "?"],
+      answer: "?",
+      explain: "???????"
     },
     {
-      q: "15, 30, 60, 120, ？",
+      q: "15, 30, 60, 120, ?",
       choices: ["180", "200", "220", "240"],
       answer: "240",
-      explain: "2倍です。"
+      explain: "2????"
     },
     {
-      q: "全員が帽子を被っている。太郎は全員の一人。太郎は帽子を？",
-      choices: ["持っている", "被っている", "落とした", "不明"],
-      answer: "被っている",
-      explain: "論理問題です。"
+      q: "????????????????????????????",
+      choices: ["?????", "?????", "????", "??"],
+      answer: "?????",
+      explain: "???????"
     }
   ];
 
@@ -436,10 +437,10 @@
     if (choice === data.answer) {
       score++;
       scoreEl.textContent = score;
-      statusEl.textContent = "正解！ " + data.explain;
+      statusEl.textContent = "??? " + data.explain;
       statusEl.style.color = "#1f9d55";
     } else {
-      statusEl.textContent = "不正解。正解は「" + data.answer + "」。" + data.explain;
+      statusEl.textContent = "????????" + data.answer + "??" + data.explain;
       statusEl.style.color = "#d93025";
     }
 
@@ -459,31 +460,31 @@
     let comment = "";
 
     if (iq >= 135) {
-      rank = "天才級";
-      comment = "かなり鋭いひらめき力です。";
+      rank = "???";
+      comment = "?????????????";
     } else if (iq >= 120) {
-      rank = "かなり優秀";
-      comment = "論理力と処理速度が高めです。";
+      rank = "?????";
+      comment = "??????????????";
     } else if (iq >= 105) {
-      rank = "平均以上";
-      comment = "バランスよく考えられています。";
+      rank = "????";
+      comment = "???????????????";
     } else if (iq >= 90) {
-      rank = "標準レベル";
-      comment = "落ち着いて解けばもっと伸びます。";
+      rank = "?????";
+      comment = "????????????????";
     } else {
-      rank = "のびしろタイプ";
-      comment = "ゆっくり考える問題から慣れていきましょう。";
+      rank = "???????";
+      comment = "?????????????????????";
     }
 
     document.getElementById("result").innerHTML = `
       <div class="result">
-        <h2>診断結果</h2>
-        <p>あなたのIQ風スコアは</p>
+        <h2>????</h2>
+        <p>????IQ?????</p>
         <div class="iq-score">${iq}</div>
         <p><strong>${rank}</strong></p>
-        <p>${quizData.length}問中 ${score}問 正解</p>
+        <p>${quizData.length}?? ${score}? ??</p>
         <p>${comment}</p>
-        <button onclick="location.reload()">もう一度プレイ</button>
+        <button onclick="location.reload()">???????</button>
       </div>
     `;
   }
